@@ -1,12 +1,12 @@
-title: "Jean Dupont — Peintures"
+title: "Les tableaux de Mimosa"
 description: "Portfolio de peintures originales — huile, acrylique, aquarelle"
 baseurl: ""
 url: ""
 
 # Coordonnées (modifiable ici ou via le CMS)
-email: "jean.dupont@example.com"
+email: ""
 telephone: "+33 6 00 00 00 00"
-localisation: "Toulouse, France"
+localisation: "Castres, France"
 
 # Collections
 collections:
