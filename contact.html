@@ -24,14 +24,14 @@ permalink: /contact/
 
   <div class="contact-form-wrap">
 
-    <!-- Remplacer YOUR_FORM_ID par votre ID Formspree -->
     <form
-      action="https://formspree.io/f/YOUR_FORM_ID"
+      name="contact"
       method="POST"
+      data-netlify="true"
       class="contact-form"
       id="contact-form"
     >
-      <input type="hidden" name="_subject" value="Message depuis le site" />
+      <input type="hidden" name="form-name" value="contact" />
       <input type="text" name="_gotcha" style="display:none" />
 
       {% raw %}
@@ -81,22 +81,6 @@ permalink: /contact/
 </div>
 
 <script>
-  const form = document.getElementById('contact-form');
-  form?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const data = new FormData(form);
-    const res = await fetch(form.action, {
-      method: 'POST',
-      body: data,
-      headers: { Accept: 'application/json' }
-    });
-    if (res.ok) {
-      form.reset();
-      document.getElementById('form-success').style.display = 'block';
-    }
-  });
-
-  // Pré-remplir depuis l'URL
   const params = new URLSearchParams(window.location.search);
   const tableau = params.get('tableau');
   if (tableau) {
