@@ -1,10 +1,10 @@
 ---
-title: "Lumière d'automne"
-image: "/assets/images/exemple-tableau.jpg"
-technique: "Huile sur toile"
-dimensions: "60 × 80 cm"
+title: Test
+image: /assets/images/2024-12-13_18-45.png
+technique: Huile sur toile
+dimensions: 60 × 90 cm
 annee: 2023
 disponibilite: disponible
-description: "Une lumière dorée filtre à travers les feuilles rousses. Peint en plein air, dans la forêt de Bouconne."
+description: Description
 featured: true
 ---
