@@ -1,0 +1,23 @@
+---
+layout: default
+title: À propos
+permalink: /a-propos/
+---
+
+<div class="page-about">
+
+  {% if page.photo %}
+  <div class="about-photo-wrap">
+    <img src="{{ page.photo | relative_url }}" alt="{{ site.data.site.artiste }}" class="about-photo" />
+  </div>
+  {% endif %}
+
+  <div class="about-content">
+    <h1 class="page-title">{{ site.data.site.artiste }}</h1>
+    <div class="about-text">
+      {{ content }}
+    </div>
+    <a href="{{ '/contact/' | relative_url }}" class="btn btn--outline">Me contacter</a>
+  </div>
+
+</div>

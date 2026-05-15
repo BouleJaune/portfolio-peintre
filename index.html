@@ -1,0 +1,72 @@
+---
+layout: default
+title: Accueil
+---
+
+<section class="hero">
+  <div class="hero__inner">
+    <p class="hero__eyebrow">Portfolio</p>
+    <h1 class="hero__name">{{ site.data.site.artiste }}</h1>
+    <p class="hero__slogan">{{ site.data.site.slogan }}</p>
+    <a href="{{ '/galerie/' | relative_url }}" class="btn btn--outline">Voir les œuvres</a>
+  </div>
+</section>
+
+{% assign featured = site.tableaux | where: "featured", true | limit: 6 %}
+{% if featured.size > 0 %}
+<section class="selection">
+  <div class="section-header">
+    <h2 class="section-title">Sélection</h2>
+    <a href="{{ '/galerie/' | relative_url }}" class="section-link">Toute la galerie →</a>
+  </div>
+  <div class="grid-galerie">
+    {% for tableau in featured %}
+    <a href="{{ tableau.url | relative_url }}" class="carte-tableau">
+      <div class="carte-tableau__image-wrap">
+        <img src="{{ tableau.image | relative_url }}" alt="{{ tableau.title }}" loading="lazy" />
+        {% if tableau.disponibilite == 'vendu' %}
+        <span class="badge badge--vendu">Vendu</span>
+        {% endif %}
+      </div>
+      <div class="carte-tableau__info">
+        <p class="carte-tableau__titre">{{ tableau.title }}</p>
+        <p class="carte-tableau__meta">{{ tableau.technique }} · {{ tableau.annee }}</p>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+{% else %}
+{% assign recent = site.tableaux | sort: "annee" | reverse | limit: 6 %}
+{% if recent.size > 0 %}
+<section class="selection">
+  <div class="section-header">
+    <h2 class="section-title">Œuvres récentes</h2>
+    <a href="{{ '/galerie/' | relative_url }}" class="section-link">Toute la galerie →</a>
+  </div>
+  <div class="grid-galerie">
+    {% for tableau in recent %}
+    <a href="{{ tableau.url | relative_url }}" class="carte-tableau">
+      <div class="carte-tableau__image-wrap">
+        <img src="{{ tableau.image | relative_url }}" alt="{{ tableau.title }}" loading="lazy" />
+        {% if tableau.disponibilite == 'vendu' %}
+        <span class="badge badge--vendu">Vendu</span>
+        {% endif %}
+      </div>
+      <div class="carte-tableau__info">
+        <p class="carte-tableau__titre">{{ tableau.title }}</p>
+        <p class="carte-tableau__meta">{{ tableau.technique }} · {{ tableau.annee }}</p>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+{% endif %}
+
+<section class="cta-contact">
+  <div class="cta-contact__inner">
+    <p class="cta-contact__text">Une œuvre vous intéresse ?</p>
+    <a href="{{ '/contact/' | relative_url }}" class="btn">Prendre contact</a>
+  </div>
+</section>

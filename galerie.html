@@ -1,0 +1,55 @@
+---
+layout: default
+title: Galerie
+permalink: /galerie/
+---
+
+<div class="page-header">
+  <h1 class="page-title">Galerie</h1>
+  <p class="page-subtitle">{{ site.tableaux.size }} œuvre{% if site.tableaux.size > 1 %}s{% endif %}</p>
+</div>
+
+{% assign techniques = site.tableaux | map: "technique" | uniq | sort %}
+{% if techniques.size > 1 %}
+<div class="filtres">
+  <button class="filtre is-active" data-filtre="tous">Toutes</button>
+  {% for tech in techniques %}
+  <button class="filtre" data-filtre="{{ tech | slugify }}">{{ tech }}</button>
+  {% endfor %}
+</div>
+{% endif %}
+
+<div class="grid-galerie grid-galerie--full" id="galerie-grid">
+  {% assign tableaux_tries = site.tableaux | sort: "annee" | reverse %}
+  {% for tableau in tableaux_tries %}
+  <a href="{{ tableau.url | relative_url }}" class="carte-tableau" data-technique="{{ tableau.technique | slugify }}">
+    <div class="carte-tableau__image-wrap">
+      <img src="{{ tableau.image | relative_url }}" alt="{{ tableau.title }}" loading="lazy" />
+      {% if tableau.disponibilite == 'vendu' %}
+      <span class="badge badge--vendu">Vendu</span>
+      {% endif %}
+    </div>
+    <div class="carte-tableau__info">
+      <p class="carte-tableau__titre">{{ tableau.title }}</p>
+      <p class="carte-tableau__meta">{{ tableau.technique }} · {{ tableau.dimensions }} · {{ tableau.annee }}</p>
+    </div>
+  </a>
+  {% endfor %}
+</div>
+
+{% if site.tableaux.size == 0 %}
+<p class="empty-state">Les œuvres seront bientôt disponibles.</p>
+{% endif %}
+
+<script>
+  document.querySelectorAll('.filtre').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filtre').forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      const f = btn.dataset.filtre;
+      document.querySelectorAll('.carte-tableau').forEach(c => {
+        c.style.display = (f === 'tous' || c.dataset.technique === f) ? '' : 'none';
+      });
+    });
+  });
+</script>

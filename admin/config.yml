@@ -1,0 +1,119 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets/images"
+public_folder: "/assets/images"
+
+locale: "fr"
+
+collections:
+  - name: "tableaux"
+    label: "Tableaux"
+    label_singular: "Tableau"
+    folder: "_tableaux"
+    create: true
+    slug: "{{year}}-{{slug}}"
+    editor:
+      preview: false
+    fields:
+      - label: "Titre"
+        name: "title"
+        widget: "string"
+        hint: "Ex : Lumière d'automne"
+
+      - label: "Image"
+        name: "image"
+        widget: "image"
+        hint: "Photo du tableau (JPG ou PNG, fond neutre si possible)"
+
+      - label: "Technique"
+        name: "technique"
+        widget: "select"
+        options:
+          - "Huile sur toile"
+          - "Huile sur panneau"
+          - "Acrylique sur toile"
+          - "Aquarelle"
+          - "Pastel"
+          - "Crayon"
+          - "Encre"
+          - "Technique mixte"
+          - "Autre"
+
+      - label: "Dimensions (cm)"
+        name: "dimensions"
+        widget: "string"
+        hint: "Ex : 60 × 80 cm"
+
+      - label: "Année"
+        name: "annee"
+        widget: "number"
+        value_type: "int"
+        min: 1950
+        max: 2100
+
+      - label: "Disponibilité"
+        name: "disponibilite"
+        widget: "select"
+        options:
+          - label: "Disponible"
+            value: "disponible"
+          - label: "Vendu"
+            value: "vendu"
+          - label: "Collection privée"
+            value: "collection-privee"
+          - label: "Non à vendre"
+            value: "non-a-vendre"
+        default: "disponible"
+
+      - label: "Description (optionnelle)"
+        name: "description"
+        widget: "text"
+        required: false
+        hint: "Quelques mots sur ce tableau, son contexte, son inspiration..."
+
+      - label: "Mettre en avant sur la page d'accueil"
+        name: "featured"
+        widget: "boolean"
+        default: false
+
+  - name: "pages"
+    label: "Pages"
+    files:
+      - label: "À propos"
+        name: "a-propos"
+        file: "a-propos.md"
+        fields:
+          - label: "Titre"
+            name: "title"
+            widget: "string"
+          - label: "Photo (optionnelle)"
+            name: "photo"
+            widget: "image"
+            required: false
+          - label: "Texte de présentation"
+            name: "body"
+            widget: "markdown"
+
+      - label: "Paramètres du site"
+        name: "config-site"
+        file: "_data/site.yml"
+        fields:
+          - label: "Nom de l'artiste"
+            name: "artiste"
+            widget: "string"
+          - label: "Slogan / sous-titre"
+            name: "slogan"
+            widget: "string"
+          - label: "Email de contact"
+            name: "email"
+            widget: "string"
+          - label: "Téléphone"
+            name: "telephone"
+            widget: "string"
+            required: false
+          - label: "Localisation"
+            name: "localisation"
+            widget: "string"
+            required: false

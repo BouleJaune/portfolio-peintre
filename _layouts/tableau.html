@@ -1,0 +1,63 @@
+---
+layout: default
+---
+
+<article class="tableau-detail">
+
+  <div class="tableau-detail__image-wrap">
+    <img
+      src="{{ page.image | relative_url }}"
+      alt="{{ page.title }}"
+      class="tableau-detail__image"
+    />
+  </div>
+
+  <div class="tableau-detail__info">
+
+    <nav class="breadcrumb">
+      <a href="{{ '/galerie/' | relative_url }}">← Galerie</a>
+    </nav>
+
+    <h1 class="tableau-detail__titre">{{ page.title }}</h1>
+
+    <dl class="tableau-detail__meta">
+      <div class="meta-item">
+        <dt>Technique</dt>
+        <dd>{{ page.technique }}</dd>
+      </div>
+      <div class="meta-item">
+        <dt>Dimensions</dt>
+        <dd>{{ page.dimensions }}</dd>
+      </div>
+      <div class="meta-item">
+        <dt>Année</dt>
+        <dd>{{ page.annee }}</dd>
+      </div>
+      <div class="meta-item">
+        <dt>Disponibilité</dt>
+        <dd class="disponibilite disponibilite--{{ page.disponibilite }}">
+          {% case page.disponibilite %}
+            {% when 'disponible' %}Disponible
+            {% when 'vendu' %}Vendu
+            {% when 'collection-privee' %}Collection privée
+            {% when 'non-a-vendre' %}Non à vendre
+          {% endcase %}
+        </dd>
+      </div>
+    </dl>
+
+    {% if page.description %}
+    <div class="tableau-detail__description">
+      <p>{{ page.description }}</p>
+    </div>
+    {% endif %}
+
+    {% if page.disponibilite == 'disponible' %}
+    <a href="{{ '/contact/' | relative_url }}?tableau={{ page.title | url_encode }}" class="btn">
+      Me contacter pour ce tableau
+    </a>
+    {% endif %}
+
+  </div>
+
+</article>

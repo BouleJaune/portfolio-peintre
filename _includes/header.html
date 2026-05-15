@@ -1,0 +1,31 @@
+<header class="site-header">
+  <div class="site-header__inner">
+
+    <a href="{{ '/' | relative_url }}" class="site-header__logo">
+      <span class="logo-name">{{ site.data.site.artiste }}</span>
+      <span class="logo-sub">{{ site.data.site.slogan }}</span>
+    </a>
+
+    <nav class="site-nav">
+      <a href="{{ '/' | relative_url }}" class="site-nav__link {% if page.url == '/' %}is-active{% endif %}">Accueil</a>
+      <a href="{{ '/galerie/' | relative_url }}" class="site-nav__link {% if page.url contains '/galerie' %}is-active{% endif %}">Galerie</a>
+      <a href="{{ '/a-propos/' | relative_url }}" class="site-nav__link {% if page.url contains 'a-propos' %}is-active{% endif %}">À propos</a>
+      <a href="{{ '/contact/' | relative_url }}" class="site-nav__link {% if page.url contains 'contact' %}is-active{% endif %}">Contact</a>
+    </nav>
+
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+  </div>
+</header>
+
+<script>
+  const toggle = document.querySelector('.nav-toggle');
+  const nav = document.querySelector('.site-nav');
+  toggle?.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!open));
+    nav.classList.toggle('is-open');
+  });
+</script>

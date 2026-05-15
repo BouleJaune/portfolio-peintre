@@ -1,0 +1,36 @@
+title: "Jean Dupont — Peintures"
+description: "Portfolio de peintures originales — huile, acrylique, aquarelle"
+baseurl: ""
+url: ""
+
+# Coordonnées (modifiable ici ou via le CMS)
+email: "jean.dupont@example.com"
+telephone: "+33 6 00 00 00 00"
+localisation: "Toulouse, France"
+
+# Collections
+collections:
+  tableaux:
+    output: true
+    permalink: /galerie/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: "tableaux"
+    values:
+      layout: "tableau"
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Exclude
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - README.md
+  - netlify.toml
